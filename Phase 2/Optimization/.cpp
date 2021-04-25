@@ -1,7 +1,5 @@
 #include<iostream>
-#include<algorithm>
 int p = 0;
-
 int q = 0;
 int main()
 {
@@ -32,11 +30,6 @@ int main()
 	}
 	c = 4+c;
 	c = 3 + 4 * (5*6)/ (32);
-	//float p = 9.7;
-	//p--;
-	//++p;
-	//--p;
-	//int p=200;
 	if(p<5) a=10;
 	cout<<"Hi"<<endl;
 	for(i=0;i<10;i++){
@@ -48,7 +41,4 @@ int main()
 		}
 	}
 	a=p;
-	//c = a+b*l;
-	//cin>>a;
-	//printf("Hello World!\n");
 	}

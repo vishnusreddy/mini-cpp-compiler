@@ -1,9 +1,21 @@
-a =  10
+a =  1
+b =  1
+i =  0
 L0 : 
-if  a<15  goto L1
+if  i<10  goto L1
 goto L2
 L1 : 
-t0 = a + 1
-a =  t0
+t0 = i + 1
+i =  t0
 goto L0
 L2 : 
+if  i==10  goto L3
+goto L4
+L3 : 
+a =  10
+goto L5
+L4 : 
+b =  10
+L5 : 
+t1 = a + b
+c =  t1

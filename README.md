@@ -3,7 +3,7 @@
 This is a mini compiler that compiles c++ files. We have made use of lex(flex) and yacc(bison) to implement this. 
 
 ## How to Run This?
-We have included shell files in each phase for running it easily. You can make use of them. 
+There is more information on how to run this in each of the folders, please refer to them. 
 
 ## Team Members
 1. Vishnu S Reddy
