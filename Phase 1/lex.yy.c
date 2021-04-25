@@ -9,7 +9,7 @@
 #define YY_FLEX_MINOR_VERSION 5
 
 #include <stdio.h>
-
+#include <errno.h>
 
 /* cfront 1.2 defines "c_plusplus" instead of "__cplusplus" */
 #ifdef c_plusplus
@@ -22,7 +22,9 @@
 #ifdef __cplusplus
 
 #include <stdlib.h>
+#ifndef _WIN32
 #include <unistd.h>
+#endif
 
 /* Use prototypes in function declarations. */
 #define YY_USE_PROTOS
@@ -61,6 +63,7 @@
 #else
 #define YY_PROTO(proto) ()
 #endif
+
 
 /* Returned upon end-of-file. */
 #define YY_NULL 0
@@ -479,7 +482,7 @@ char *yytext;
 	extern struct node * checksym(char *);
 
 
-#line 483 "lex.yy.c"
+#line 486 "lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -579,9 +582,20 @@ YY_MALLOC_DECL
 			YY_FATAL_ERROR( "input in flex scanner failed" ); \
 		result = n; \
 		} \
-	else if ( ((result = fread( buf, 1, max_size, yyin )) == 0) \
-		  && ferror( yyin ) ) \
-		YY_FATAL_ERROR( "input in flex scanner failed" );
+	else \
+		{ \
+		errno=0; \
+		while ( (result = fread(buf, 1, max_size, yyin))==0 && ferror(yyin)) \
+			{ \
+			if( errno != EINTR) \
+				{ \
+				YY_FATAL_ERROR( "input in flex scanner failed" ); \
+				break; \
+				} \
+			errno=0; \
+			clearerr(yyin); \
+			} \
+		}
 #endif
 
 /* No semi-colon after return; correct usage is to write "yyterminate();" -
@@ -633,7 +647,7 @@ YY_DECL
 #line 27 "sym.l"
 
 
-#line 637 "lex.yy.c"
+#line 651 "lex.yy.c"
 
 	if ( yy_init )
 		{
@@ -1051,7 +1065,7 @@ YY_RULE_SETUP
 #line 126 "sym.l"
 ECHO;
 	YY_BREAK
-#line 1055 "lex.yy.c"
+#line 1069 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1615,9 +1629,13 @@ YY_BUFFER_STATE b;
 	}
 
 
+#ifndef _WIN32
+#include <unistd.h>
+#else
 #ifndef YY_ALWAYS_INTERACTIVE
 #ifndef YY_NEVER_INTERACTIVE
 extern int isatty YY_PROTO(( int ));
+#endif
 #endif
 #endif
 

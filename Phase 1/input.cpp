@@ -1,5 +1,10 @@
 #include<iostream>
 int v = 100; //Global Variable
+int temp()
+{
+	int j = 10;
+	return j;
+}
 int main()
 {
     /*
@@ -8,7 +13,7 @@ int main()
 	//Okay this is just another comment
 
     int x = 5, p = 1;
-    a = 10;
+    int a = 10;
     //Showing the usage of brackets and for loops
     for (int i = 1; i <= x; i++)
     {

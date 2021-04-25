@@ -885,7 +885,7 @@ void cleansymbol(){
             free(entry);
         }
         else if(strcmp(entry->name,"main")== 0 && strcmp(entry->token, "function")==0){	//remove main entry from symbol table
-        	*pp = entry->link;
+        	//*pp = entry->link;
             free(entry);
         }
         // Else move to next
