@@ -1,0 +1,78 @@
+p = 0
+ARR arr = 1,2,3
+a = 17
+b = 22
+c = 39
+IF c<10 GOTO L0
+GOTO L1
+L0 :
+a = 50
+GOTO L2
+L1 :
+L2 :
+*arr = *arr + 0
+*arr = 5
+b = 14
+a = 48
+i = 0
+L3 :
+IF i<3 GOTO L4
+GOTO L5
+L4 :
+*arr = *arr + i
+*arr = 0
+i = i + 1
+GOTO L3
+L5 :
+IF c<10 GOTO L6
+GOTO L7
+L6 :
+a = 7
+GOTO L8
+L7 :
+*arr = *arr + 0
+IF *arr>10 GOTO L9
+GOTO L10
+L9 :
+a = 66
+GOTO L8
+L10 :
+IF c>10 GOTO L11
+GOTO L12
+L11 :
+a = 66
+GOTO L8
+L12 :
+L8 :
+c = 43
+c = t10
+IF p<5 GOTO L13
+GOTO L14
+L13 :
+a = 10
+GOTO L15
+L14 :
+L15 :
+i = 0
+L16 :
+IF i<10 GOTO L17
+GOTO L18
+L17 :
+IF a<b GOTO L19
+GOTO L20
+L19 :
+GOTO L16
+GOTO L21
+L20 :
+L21 :
+IF a>b GOTO L22
+GOTO L23
+L22 :
+GOTO L18
+GOTO L24
+L23 :
+L24 :
+i = i + 1
+GOTO L16
+L18 :
+a = 0

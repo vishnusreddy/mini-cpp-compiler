@@ -1,0 +1,9 @@
+a =  10
+L0 : 
+if  a<15  goto L1
+goto L2
+L1 : 
+t0 = a + 1
+a =  t0
+goto L0
+L2 : 

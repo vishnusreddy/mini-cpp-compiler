@@ -8,6 +8,6 @@ int main()
     int f = 2 * a;
     d = 10;
     if (b)
-    a = a + e;
+    a = a + 2;
     
 }
