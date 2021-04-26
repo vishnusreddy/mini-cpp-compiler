@@ -2,43 +2,43 @@ import time
 def printl(list1):
     for i in list1:
         print(i)
-        ###time.sleep(0.05)
+        ##
         
 def printExpression(constantList, filepointer):
     for i in constantList:
         if(i[0] == "A" and i[1] == "R" and i[2]=="R"):
             print(i)
-            #time.sleep(0.05)
+            
             filepointer.write("%s\n"%(i))
         if(i[0]=="="):
             print(i[3],i[0],i[1])
-            #time.sleep(0.05)
+            
             filepointer.write("%s %s %s\n"%(i[3],i[0],i[1]))
         elif(i[0] in ["+","-","*","/","==","<=","<",">",">="]):
             print(i[3],"=",i[1],i[0],i[2])
-            #time.sleep(0.05)
+            
             filepointer.write("%s %s %s %s %s\n"%(i[3],"=",i[1],i[0],i[2]))
         elif(i[0] in ["IF","GOTO","LABEL","not", "ARR"]):
             
             if(i[0]=="IF"):
                 print(i[0],i[1],"GOTO",i[3])
-                #time.sleep(0.05)
+                
                 filepointer.write("%s %s %s %s\n" %(i[0],i[1],"GOTO",i[3]))
             if(i[0]=="GOTO"):
                 print(i[0],i[1])
-                #time.sleep(0.05)
+                
                 filepointer.write("%s %s\n"%(i[0],i[1]))
             if(i[0]=="LABEL"):
                 filepointer.write("%s %s\n"%(i[1], ":"))
                 print(i[1],":")
-                #time.sleep(0.05)
+                
             if(i[0]=="not"):
                 print(i[3],"=",i[0],i[1])
-                #time.sleep(0.05)
+                
                 filepointer.write("%s %s %s %s\n"%(i[3],"=",i[0],i[1]))
             if(i[0] == "ARR"):
                 print(i[1], "=", i[3])
-                #time.sleep(0.05)
+                
                 filepointer.write("%s %s %s %s\n"%("ARR", i[0], "=", i[3]))
                 
 def existslabel(lines, i):
@@ -242,7 +242,7 @@ def constantFolding(lines, blocks):
         if k in blocks:
             if(len(i.split()) == 3):
                 print("=", rhs, "NULL", lhs)
-                #time.sleep(0.05)
+                
                 lhs, ass, rhs = i.split()
                 constantList.append(["=", rhs, "NULL", lhs])
                 fullList.append(["=", rhs, "NULL", lhs])
@@ -250,19 +250,19 @@ def constantFolding(lines, blocks):
                 #To change in case if gets messed up
                 lhs, ass, arg1, operator, arg2 = i.split()
                 print(operator,arg1,arg2,lhs)
-                #time.sleep(0.05)
+                
                 
                 constantList.append([operator, arg1, arg2, lhs])
             elif(len(i.split()) == 2):
                 arg1, arg2 = i.split()
                 if(arg1 == "goto"):
                     print("GOTO", arg2)
-                    #time.sleep(0.05)
+                    
                     constantList.append(["GOTO", arg2, "NULL", "NULL"])
                     fullList.append(["GOTO", arg2, "NULL", "NULL"])
                 else:
                     print("LABEL", arg1)
-                    #time.sleep(0.05)
+                    
                     constantList.append(["LABEL", arg1, "NULL", "NULL"])
                     fullList.append(["GOTO", arg2, "NULL", "NULL"])
             else:
@@ -272,7 +272,7 @@ def constantFolding(lines, blocks):
                 else:
                     cond, arg1, gt, label = i.split();
                     print("IF", arg1, "GOTO", label)
-                    #time.sleep(0.05)
+                    
                     constantList.append(["IF", arg1, "GOTO", label])
                     fullList.append(["IF", arg1, "GOTO", label])
                 
@@ -283,19 +283,19 @@ def constantFolding(lines, blocks):
                 if(rhs.isdigit() and (lhs[0]!='*' and rhs[0]!='*')):
                     tempdict[lhs] = rhs;
                     print("=", rhs, "NULL", lhs);
-                    #time.sleep(0.05)
+                    
                     constantList.append(["=", rhs, "NULL", lhs])
                     fullList.append(["=", rhs, "NULL", lhs])
                 else:
                     if(rhs in tempdict and (lhs[0]!='*' and rhs[0]!='*')):
                         tempdict[lhs] = tempdict[rhs]
                         print("=", tempdict[rhs], "NULL", lhs)
-                        #time.sleep(0.05)
+                        
                         constantList.append(["=", tempdict[rhs], "NULL", lhs])
                         fullList.append(["=", tempdict[rhs], "NULL", lhs])
                     else:
                         print("=", rhs, "NULL", lhs)
-                        #time.sleep(0.05)
+                        
                         constantList.append(["=", rhs, "NULL", lhs])
                         fullList.append(["=", rhs, "NULL", lhs])
                     
@@ -307,7 +307,7 @@ def constantFolding(lines, blocks):
                         result = eval(arg1+operator+arg2)
                         tempdict[lhs] = result
                         print("=", result, "NULL", lhs)
-                        #time.sleep(0.05);
+                        
                         constantList.append(["=", result, "NULL", lhs])
                         fullList.append(["=", result, "NULL", lhs])
                     elif(arg1.isdigit() and (lhs[0]!='*' and arg1[0]!='*' and arg2[0]!='*')):
@@ -315,12 +315,12 @@ def constantFolding(lines, blocks):
                             result = eval(arg1+operator+str(tempdict[arg2]))
                             tempdict[lhs] = result
                             print("=", result, "NULL", lhs)
-                            #time.sleep(0.05)
+                            
                             constantList.append(["=", result, "NULL", lhs])
                             fullList.append(["=", result, "NULL", lhs])
                         else:
                             print(operator, arg1, arg2, lhs)
-                            #time.sleep(0.05)
+                            
                             constantList.append([operator, arg1, arg2, lhs])
                             fullList.append([operator, arg1, arg2, lhs])
                     elif(arg2.isdigit() and (lhs[0]!='*' and arg1[0]!='*' and arg2[0]!='*')):
@@ -330,12 +330,12 @@ def constantFolding(lines, blocks):
                             result = eval(str(tempdict[arg1])+operator+arg2)
                             tempdict[lhs] = result
                             print("=",result,"NULL",lhs)
-                            #time.sleep(0.05)
+                            
                             constantList.append(["=",result,"NULL",lhs])
                             fullList.append(["=",result,"NULL",lhs])
                         else:
                             print(operator,arg1,arg2,lhs)
-                            #time.sleep(0.05)
+                            
                             constantList.append([operator,arg1,arg2,lhs])
                             fullList.append([operator,arg1,arg2,lhs])
                     else:
@@ -353,12 +353,12 @@ def constantFolding(lines, blocks):
                             result = eval(arg1Res+operator+arg2Res)
                             tempdict[lhs] = result
                             print("=",result,"NULL",lhs)
-                            #time.sleep(0.05)
+                            
                             constantList.append(["=",result,"NULL",lhs])
                             fullList.append(["=",result,"NULL",lhs])
                         else:
                             print(operator,arg1Res,arg2Res,lhs)
-                            #time.sleep(0.05)
+                            
                             constantList.append([operator,arg1Res,arg2Res,lhs])
                             fullList.append([operator,arg1Res,arg2Res,lhs])
             
@@ -366,36 +366,36 @@ def constantFolding(lines, blocks):
                     if(arg1.isdigit() and (lhs[0]!='*' and arg1[0]!='*' and arg2[0]!='*')):
                         tempdict[lhs]=arg1
                         print("=",arg1,"NULL",lhs)
-                        #time.sleep(0.05)
+                        
                         constantList.append(["=",arg1,"NULL",lhs])
                         fullList.append(["=",arg1,"NULL",lhs])
                     else:
                         if(arg1 in tempdict and (lhs[0]!='*' and arg1[0]!='*' and arg2[0]!='*')):
                             print("=",tempdict[arg1],"NULL",lhs)
-                            #time.sleep(0.05)
+                            
                             constantList.append(["=",tempdict[arg1],"NULL",lhs])
                             fullList.append(["=",tempdict[arg1],"NULL",lhs])
                         else:
                             print("=",arg1,"NULL",lhs)
-                            #time.sleep(0.05)
+                            
                             constantList.append(["=",arg1,"NULL",lhs])
                             fullList.append(["=",arg1,"NULL",lhs])
     
                 else:
                     print(operator,arg1,arg2,lhs)
-                    #time.sleep(0.05)
+                    
                     constantList.append([operator,arg1,arg2,lhs])
                     fullList.append([operator,arg1,arg2,lhs])
             elif(len(i.split()) == 2):
                 arg1, arg2 = i.split()
                 if(arg1 == 'goto'):
                     print("GOTO", arg2)
-                    #time.sleep(0.05)
+                    
                     constantList.append(["GOTO", arg2, "NULL", "NULL"])
                     fullList.append(["GOTO", arg2, "NULL", "NULL"])
                 else:
                     print("LABEL", arg1)
-                    #time.sleep(0.05)
+                    
                     constantList.append(["LABEL", arg1, "NULL", "NULL"])
                     fullList.append(["GOTO", arg2, "NULL", "NULL"])
                 
@@ -407,7 +407,7 @@ def constantFolding(lines, blocks):
                     
                     cond, arg1, gt, label = i.split();
                     print("IF", arg1, "GOTO", label)
-                    #time.sleep(0.05)
+                    
                     constantList.append(["IF", arg1, "GOTO", label])
                     fullList.append(["IF", arg1, "GOTO", label])
         k+=1
@@ -442,7 +442,7 @@ def liveVarAnalysis(lines):
         print("Live Variables at Line ", k, " Are : ", livevariables)
         time.sleep(0.02)
         k = k + 1
-    #time.sleep(0.05)
+    
     print("__________________________")
     print()
 

@@ -14,6 +14,7 @@ int main()
 
     int x = 5, p = 1;
     int a = 10;
+    c = 10;
     //Showing the usage of brackets and for loops
     for (int i = 1; i <= x; i++)
     {

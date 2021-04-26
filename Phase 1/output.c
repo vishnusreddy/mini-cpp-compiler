@@ -12,6 +12,7 @@ int main s_40 s_41
 
     int x  s_61 5 s_44 p  s_61 1 s_59
     int a  s_61 10 s_59
+    c  s_61 10 s_59
     
     for  s_40int i  s_61 1 s_59 i <= x s_59 i++ s_41
      s_123
